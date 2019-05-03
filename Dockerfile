@@ -49,6 +49,10 @@ ENV JENKINS_UC_EXPERIMENTAL=https://updates.jenkins.io/experimental
 ENV JENKINS_INCREMENTALS_REPO_MIRROR=https://repo.jenkins-ci.org/incrementals
 RUN chown -R ${user} "$JENKINS_HOME" /usr/share/jenkins/ref
 
+RUN mkdir -p "$JENKINS_HOME"/casc_configs
+ENV CASC_JENKINS_CONFIG "$JENKINS_HOME"/casc_configs
+COPY jenkins.yaml "$JENKINS_HOME"/casc_configs/jenkins.yaml
+
 # for main web interface:
 EXPOSE ${http_port}
 
@@ -56,6 +60,10 @@ EXPOSE ${http_port}
 EXPOSE ${agent_port}
 
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
+
+COPY plugins.sh /usr/local/bin/plugins.sh
+COPY install-plugins.sh /usr/local/bin/install-plugins.sh
+RUN chmod +x /usr/local/bin/plugins.sh /usr/local/bin/install-plugins.sh
 
 USER ${user}
 
@@ -65,10 +73,9 @@ USER root
 RUN chmod +x /usr/local/bin/jenkins.sh
 USER ${user}
 COPY tini-shim.sh /bin/tini
-ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]
 
 # from a derived Dockerfile, can use `RUN plugins.sh active.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
-COPY plugins.sh /usr/local/bin/plugins.sh
-COPY install-plugins.sh /usr/local/bin/install-plugins.sh
-# COPY plugins.txt /plugins.txt
-# RUN /usr/local/bin/plugins.sh /plugins.txt
+COPY plugins.txt /plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /plugins.txt
+
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]
