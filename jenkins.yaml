@@ -44,15 +44,60 @@ security:
     usageStatisticsEnabled: true
   downloadSettings:
     useBrowser: false
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
   remotingCLI:
     enabled: false
   sSHD:
     port: -1
 unclassified:
+  gitSCM:
+    createAccountBasedOnEmail: false
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://192.168.0.14:8080/"
+  mailer:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    charset: "UTF-8"
+    useSsl: false
+  pollSCM:
+    pollingThreadCount: 10
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: false
   timestamperConfig:
     allPipelines: false
     elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
     systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  gradle:
+    defaultProperties:
+    - installSource:
+        installers:
+        - "gradleInstaller"
+  maven:
+    defaultProperties:
+    - installSource:
+        installers:
+        - "maven"
+  msBuildSQRunnerInstallation:
+    defaultProperties:
+    - installSource:
+        installers:
+        - "msBuildSonarQubeRunnerInstaller"
+  sonarRunnerInstallation:
+    defaultProperties:
+    - installSource:
+        installers:
+        - "sonarRunnerInstaller"
+    installations:
+    - name: "sonar"
+      serverUrl: http://localhost:9000
+      properties:
+      - installSource:
+          installers:
+          - sonarRunnerInstaller:
+              id: "3.3.0.1492"

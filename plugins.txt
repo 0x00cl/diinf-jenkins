@@ -1,2 +1,8 @@
 configuration-as-code
+configuration-as-code-support
 timestamper
+job-dsl
+git
+docker-workflow
+gradle
+sonar
