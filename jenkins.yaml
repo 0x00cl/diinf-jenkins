@@ -1,0 +1,98 @@
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "diinf"
+    userWithPassword:
+      - id: "diinf"
+      - password: "diinftest"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  downloadSettings:
+    useBrowser: false
+  remotingCLI:
+    enabled: false
+  sSHD:
+    port: -1
+unclassified:
+  buildStepOperation:
+    enabled: false
+  gitHubPluginConfig:
+    hookUrl: "http://192.168.0.14:8080/github-webhook/"
+  gitSCM:
+    createAccountBasedOnEmail: false
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://192.168.0.14:8080/"
+  mailer:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    charset: "UTF-8"
+    useSsl: false
+  pollSCM:
+    pollingThreadCount: 10
+  timestamperConfig:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+tool:
+  ant:
+    defaultProperties:
+    - installSource:
+        installers:
+        - "antFromApache"
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  gradle:
+    defaultProperties:
+    - installSource:
+        installers:
+        - "gradleInstaller"
+  jdk:
+    defaultProperties:
+    - installSource:
+        installers:
+        - jdkInstaller:
+            acceptLicense: false
+  maven:
+    defaultProperties:
+    - installSource:
+        installers:
+        - "maven"
