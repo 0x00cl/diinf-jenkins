@@ -55,7 +55,7 @@ unclassified:
     createAccountBasedOnEmail: false
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "http://192.168.0.14:8080/"
+    url: "http://localhost:8080/"
   mailer:
     adminAddress: "address not configured yet <nobody@nowhere>"
     charset: "UTF-8"
