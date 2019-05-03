@@ -64,6 +64,13 @@ unclassified:
     pollingThreadCount: 10
   sonarGlobalConfiguration:
     buildWrapperEnabled: false
+    installations:
+    - name: "prueba1"
+      serverAuthenticationToken: "{AQAAABAAAAAQqBjA6Q0FpCqI10E5IrO6bqdP4sAY4hRc0VQZ4ji3Gjs=}"
+      serverUrl: "http://localhost:9000"
+      triggers:
+        skipScmCause: false
+        skipUpstreamCause: false
   timestamperConfig:
     allPipelines: false
     elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
